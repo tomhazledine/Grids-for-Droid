@@ -1,6 +1,8 @@
 import { patterns } from "./src/patterns.js";
 import fs from "fs";
 
+const MAX_SEQUENCERS = 10;
+
 const duplexPatterns = patterns =>
     patterns.reduce((acc, pattern, i) => {
         if (i % 2 === 0) {
@@ -51,7 +53,7 @@ const printSequence = (pattern, slug, n1, n2) => {
 const printPattern = voices =>
     voices
         .map((pattern, i) => {
-            if (i >= 8) return;
+            if (i >= MAX_SEQUENCERS) return;
             const patternA = i * 2;
             const patternB = patternA + 1;
             const number1 = patternA.toString().padStart(2, "0");

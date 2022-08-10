@@ -13,7 +13,7 @@ The Droid module by [Der Mann Mit Der Machine](https://shop.dermannmitdermaschin
 
 The [Grids](https://mutable-instruments.net/modules/grids/) module, made by Mutable Instruments, is a "Topographic drum sequencer" that outputs three sets of related rhythms (kick/snare/hihat) and switches between different patterns using two pots. The pots combine to create cartesian coordinates used to select patterns in real time.
 
-This is a patch for the Droid that recreates some of the functionality of Grids. Grids is now discontinued and hard to find on the used market. Due to the limitations of both the Droid (RAM becomes a factor when adding too many sequencers) and my own imagination (), this patch implements a subset of the original Grids' patterns (currently 16 patterns have been included from the original set of 25 in the Grids source code). 
+This is a patch for the Droid that recreates some of the functionality of Grids. Grids is now discontinued and hard to find on the used market. Due to the limitations of both the Droid (RAM becomes a factor when adding too many sequencers) and my own imagination (a.k.a. coding ability), this patch implements a subset of the original Grids' patterns (currently 20 patterns have been included from the original set of 25 in the Grids source code). 
 
 ## Installation
 
@@ -40,16 +40,20 @@ Copy `droid.ini` onto your Droid's SD card to start.
 
 ### Controls (a.k.a. grid navigation)
 
--   `P1.1`: selects pattern column (8 options)
--   `P1.2`: selects pattern column (2 options)
+-   `P1.1`: selects pattern row (4 options)
+-   `P1.2`: selects pattern column (5 options)
 
 ```
-                       ← P1.1 →
-      ┌────┬────┬────┬────┬────┬────┬────┬────┐
-  ↑   │ 01 │ 03 │ 05 │ 07 │ 09 │ 11 │ 13 │ 15 │
- P1.2 ├────┼────┼────┼────┼────┼────┼────┼────┤
-  ↓   │ 02 │ 04 │ 06 │ 08 │ 10 │ 12 │ 14 │ 16 │
-      └────┴────┴────┴────┴────┴────┴────┴────┘
+               ← P1.2 →
+      ┌────┬────┬────┬────┬────┐
+      │ 01 │ 05 │ 09 │ 13 │ 17 │
+      ├────┼────┼────┼────┼────┤
+  ↑   │ 02 │ 06 │ 10 │ 14 │ 18 │
+ P1.1 ├────┼────┼────┼────┼────┤
+  ↓   │ 03 │ 07 │ 11 │ 15 │ 19 │
+      ├────┼────┼────┼────┼────┤
+      │ 04 │ 08 │ 12 │ 16 │ 20 │
+      └────┴────┴────┴────┴────┘
 ```
 
 ## Customisation
