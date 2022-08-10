@@ -1,0 +1,14 @@
+{
+    "name": "Grids pattern generator for Driod",
+    "version": "1.0.0",
+    "description": "Grids pattern generator for Driod",
+    "main": "anagrams.js",
+    "type": "module",
+    "scripts": {
+        "start": "node anagrams.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Tom Hazledine <tom@tomhazledine.com> (https://tomhazledine.com)",
+    "homepage": "https://tomhazledine.com/grids-for-droid",
+    "license": "GPL-3.0"
+}
