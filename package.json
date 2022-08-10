@@ -5,7 +5,8 @@
     "main": "generate-sequences.js",
     "type": "module",
     "scripts": {
-        "start": "node generate-sequences",
+        "start": "node generate-sequences"
+    },
     "author": "Tom Hazledine <tom@tomhazledine.com> (https://tomhazledine.com)",
     "homepage": "https://github.com/tomhazledine/Grids-for-Droid",
     "license": "GPL-3.0"

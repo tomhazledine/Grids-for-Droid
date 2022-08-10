@@ -1,10 +1,19 @@
 # Grids for Droid
 
-This patch recreates some the functionality of Mutable Instruments' "Grids" module.
+This patch recreates some the functionality of Mutable Instruments' Grids module as a patch for the Droid ecosystem.
 
-1. [Installation](#installation)
-2. [The Droid patch](#the-droid-patch)
-3. [Customisation](#customisation)
+1. [Overview](#overview)
+2. [Installation](#installation)
+3. [The Droid patch](#the-droid-patch)
+4. [Customisation](#customisation)
+
+## Overview
+
+The Droid module by [Der Mann Mit Der Machine](https://shop.dermannmitdermaschine.de/pages/droid-universal-cv-processor) is a powerful way to manipulate Control Voltage (CV) in a Eurorack modular synthesiser. It uses scripts (or "circuits") written as a `droid.ini` text file and uploaded to the module via an SD card.
+
+The [Grids](https://mutable-instruments.net/modules/grids/) module, made by Mutable Instruments, is a "Topographic drum sequencer" that outputs three sets of related rhythms (kick/snare/hihat) and switches between different patterns using two pots. The pots combine to create cartesian coordinates used to select patterns in real time.
+
+This is a patch for the Droid that recreates some of the functionality of Grids. Grids is now discontinued and hard to find on the used market. Due to the limitations of both the Droid (RAM becomes a factor when adding too many sequencers) and my own imagination (), this patch implements a subset of the original Grids' patterns (currently 16 patterns have been included from the original set of 25 in the Grids source code). 
 
 ## Installation
 
@@ -45,7 +54,9 @@ Copy `droid.ini` onto your Droid's SD card to start.
 
 ## Customisation
 
-Patterns are stored as an array in `patterns.js`. Each array item is an array of 96 values, ranging from `0` to `255`.
+Patterns are stored as an array in `./src/patterns.js`. Each array item is an array of 96 values, ranging from `0` to `255`.
+
+*Note: this patch only uses the first 16 patterns, but all 25 original patterns are included in the array in `patterns.js`.*
 
 The first 32 items of each pattern are the kick beats, the second 32 are the snares, and the final 32 items are the hihat beats.
 
