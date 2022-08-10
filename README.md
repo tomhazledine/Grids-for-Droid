@@ -2,13 +2,9 @@
 
 This patch recreates some the functionality of Mutable Instruments' "Grids" module.
 
-- [Grids for Droid](#grids-for-droid)
-  - [Installation](#installation)
-  - [The Droid patch](#the-droid-patch)
-    - [Inputs](#inputs)
-    - [Outputs](#outputs)
-    - [Controls (a.k.a. grid navigation)](#controls-aka-grid-navigation)
-  - [Customisation](#customisation)
+1. [Installation](#installation)
+2. [The Droid patch](#the-droid-patch)
+3. [Customisation](#customisation)
 
 ## Installation
 
@@ -64,4 +60,4 @@ Once you have made your changes to the patterns, you can create a new `droid.ini
 node generate-sequences
 ```
 
-* Note: this will overwrite the existing `droid.ini` *
+*Note: this will overwrite the existing `droid.ini`*
