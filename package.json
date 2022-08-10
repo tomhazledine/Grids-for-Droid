@@ -1,14 +1,12 @@
 {
-    "name": "Grids pattern generator for Driod",
+    "name": "Grids for Droid",
     "version": "1.0.0",
-    "description": "Grids pattern generator for Driod",
-    "main": "anagrams.js",
+    "description": "Grids pattern generator for Droid (modular synths)",
+    "main": "generate-sequences.js",
     "type": "module",
     "scripts": {
-        "start": "node anagrams.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
+        "start": "node generate-sequences",
     "author": "Tom Hazledine <tom@tomhazledine.com> (https://tomhazledine.com)",
-    "homepage": "https://tomhazledine.com/grids-for-droid",
+    "homepage": "https://github.com/tomhazledine/Grids-for-Droid",
     "license": "GPL-3.0"
 }
