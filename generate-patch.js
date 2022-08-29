@@ -22,7 +22,7 @@ fs.writeFile(
         headerOutput,
         sequencersOutput,
         footerOutput
-    ].join(''),
+    ].join('\n'),
     err => {
         if (err) {
             return console.error(err);

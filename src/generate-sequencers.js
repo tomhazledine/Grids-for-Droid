@@ -44,7 +44,7 @@ export const generate = () => {
         );
         if (seq < 3) {
             output.push(`  chaintonext = 1`);
-            output.push(`[sequencer]`);
+            output.push(`\n[sequencer]`);
         }
     });
 
@@ -59,7 +59,7 @@ export const generate = () => {
             const patternB = patternA + 1;
             const number1 = patternA.toString().padStart(2, "0");
             const number2 = patternB.toString().padStart(2, "0");
-            const patternTitle = `# Patterns ${number1} + ${number2}\n`;
+            const patternTitle = `\n# Patterns ${number1} + ${number2}`;
             const kickSequence = printSequence(
                 pattern,
                 "kick",
@@ -79,15 +79,12 @@ export const generate = () => {
                 number2
             );
 
-            const result =
-                patternTitle +
-                `\n` +
-                kickSequence +
-                `\n` +
-                snareSequence +
-                `\n` +
-                hihatSequence +
-                `\n`;
+            const result = [
+                patternTitle,
+                kickSequence,
+                snareSequence,
+                hihatSequence,
+            ].join('\n')
 
             return result;
         })
