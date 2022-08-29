@@ -1,9 +1,10 @@
-import { patterns } from "./src/patterns.js";
-import fs from "fs";
+import { patterns } from "./patterns.js";
+import { config } from '../droid.config.js'
 
-const MAX_SEQUENCERS = 10;
+const { inputs, max_sequencers } = config
 
-const duplexPatterns = patterns =>
+export const generate = () => {
+    const duplexPatterns = patterns =>
     patterns.reduce((acc, pattern, i) => {
         if (i % 2 === 0) {
             return [...acc, [pattern]];
@@ -13,22 +14,22 @@ const duplexPatterns = patterns =>
         return [...oldAcc, [...duplex, pattern]];
     }, []);
 
-const extractVoices = pattern => ({
+    const extractVoices = pattern => ({
     kick: pattern.slice(0, 32),
     snare: pattern.slice(32, 64),
     hihat: pattern.slice(64, 96),
-});
+    });
 
-const divideVoice = voice =>
+    const divideVoice = voice =>
     [...Array(Math.ceil(voice.length / 8))].map(_ => voice.splice(0, 8));
 
-const printSequence = (pattern, slug, n1, n2) => {
+    const printSequence = (pattern, slug, n1, n2) => {
     const name = slug.toUpperCase();
     let output = [];
     output.push(`## ${name} ${n1} + ${n2}`);
     output.push(`[sequencer]`);
-    output.push(`  clock = I1`);
-    output.push(`  reset = I2`);
+    output.push(`  clock = ${inputs.clock}`);
+    output.push(`  reset = ${inputs.reset}`);
     output.push(`  pitchoutput = _${name}_VALUES_${n1}`);
     output.push(`  cvoutput = _${name}_VALUES_${n2}`);
 
@@ -48,12 +49,12 @@ const printSequence = (pattern, slug, n1, n2) => {
     });
 
     return output.join("\n");
-};
+    };
 
-const printPattern = voices =>
+    const printPattern = voices =>
     voices
         .map((pattern, i) => {
-            if (i >= MAX_SEQUENCERS) return;
+            if (i >= max_sequencers) return;
             const patternA = i * 2;
             const patternB = patternA + 1;
             const number1 = patternA.toString().padStart(2, "0");
@@ -92,9 +93,9 @@ const printPattern = voices =>
         })
         .join(`\n`);
 
-const duplexedPatterns = duplexPatterns(patterns);
+    const duplexedPatterns = duplexPatterns(patterns);
 
-const voicedPatterns = duplexedPatterns.map((duplex, i) =>
+    const voicedPatterns = duplexedPatterns.map((duplex, i) =>
     duplex
         .map(pattern => extractVoices(pattern))
         .map(voices => ({
@@ -111,33 +112,8 @@ const voicedPatterns = duplexedPatterns.map((duplex, i) =>
             },
             { kick: [], snare: [], hihat: [] }
         )
-);
+    );
 
-const output = printPattern(voicedPatterns);
-
-console.log("---");
-console.log("Generate Grids patch for Droid");
-console.log("---");
-console.log("Parsing patterns...");
-
-console.log("Loading droid parts...");
-
-const header = fs.readFileSync("./src/droid-header.ini", {
-    encoding: "utf8",
-    flag: "r",
-});
-const footer = fs.readFileSync("./src/droid-footer.ini", {
-    encoding: "utf8",
-    flag: "r",
-});
-
-console.log("Saving droid.ini...");
-fs.writeFile("./droid.ini", header + output + footer, err => {
-    if (err) {
-        return console.error(err);
-    }
-    console.log("The droid.ini was saved.");
-    console.log("Complete");
-});
-
-// printPattern(voicedPatterns);
+    const patchOutput = printPattern(voicedPatterns);
+    return patchOutput
+}
